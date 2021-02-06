@@ -10,8 +10,66 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="weather__title">Weather</h1>
+      <div class="search">
+        <h1 class="search__title">Weather App</h1>
+        <form class="search__form" action="">
+          <input class="search__input" type="text" />
+          <button type="submit">SEARCH</button>
+        </form>
+      </div>
+      <div class="result-block">
+        <div class="result-block__temp">
+          <div class="location">
+            <h2 class="location__day">Tuesday</h2>
+            <p class="location__date">15 Jan 2019</p>
+            <p class="location__city">Paris, FR</p>
+          </div>
+          <div class="temp">
+            <p class="temp__temperature">29°C</p>
+            <p class="temp__desc">Sunny</p>
+          </div>
+        </div>
+        <div class="result-block__days">
+          <div class="data-block">
+            <div class="res-block prec">
+              <span class="prec__title">PRECIPITATION</span
+              ><span class="prec__result">0 %</span>
+            </div>
+            <div class="res-block hum">
+              <span class="hum__title">HUMIDITY</span
+              ><span class="hum__result">34 %</span>
+            </div>
+            <div class="res-block wind">
+              <span class="wind__title">WIND</span
+              ><span class="wind__result">0 km/h</span>
+            </div>
+          </div>
+          <ul class="week-list">
+            <li class="day-block day-block_active">
+              <span class="day__name">Mon</span>
+              <span class="day__temp">29°C</span>
+            </li>
+            <li class="day-block">
+              <span class="day__name">Tue</span>
+              <span class="day__temp">29°C</span>
+            </li>
+            <li class="day-block">
+              <span class="day__name">Wed</span>
+              <span class="day__temp">21°C</span>
+            </li>
+            <li class="day-block">
+              <span class="day__name">Thu</span>
+              <span class="day__temp">08°C</span>
+            </li>
+            <li class="day-block">
+              <span class="day__name">Fry</span>
+              <span class="day__temp">19°C</span>
+            </li>
+          </ul>
+          <div class="days-block"></div>
+        </div>
+      </div>
     </div>
-    <script src="app.js"></script>
+    <script src="./js/app.js"></script>
   </body>
 </html>
