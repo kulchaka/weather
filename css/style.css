@@ -70,6 +70,11 @@ p {
 
 .result-block {
     margin-top: 20px;
+    display: none;
+}
+
+.result-block_show {
+    margin-top: 20px;
     display: flex;
 }
 
