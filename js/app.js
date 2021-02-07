@@ -4,8 +4,17 @@ const city = document.querySelector(".location__city");
 const infoBlock = document.querySelector(".result-block");
 const currTemp = document.querySelector(".temp__temperature");
 const currDesc = document.querySelector(".temp__desc");
+const wind = document.querySelector(".wind__result");
+const humidity = document.querySelector(".hum__result");
+const pressure = document.querySelector(".prec__result");
 const locDate = document.querySelector(".location__date");
 const locDay = document.querySelector(".location__day");
+const load = document.querySelector(".load");
+const elOfList = document.querySelector(".week-list");
+
+elOfList.addEventListener("click", (e) => {});
+
+let objData = {};
 
 const dayArr = [
   "Monday",
@@ -17,30 +26,28 @@ const dayArr = [
   "Sunday",
 ];
 
+const dayShortArr = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
 const APIkey = "d9dd885fb445dbae5ec582c99cabc4f2";
 
 submit.addEventListener("submit", (event) => {
   event.preventDefault();
-  const cityName = tuUpper(input.value);
-  submit.reset();
-  sendInput(cityName);
+  if (input.value.length > 2) {
+    const cityName = tuUpper(input.value);
+    submit.reset();
+    sendInput(cityName);
+    infoBlock.classList = "result-block";
+    load.classList = "load load_show";
+    elOfList.innerHTML = "";
+  } else {
+    console.log("enter somthhing");
+  }
 });
 
 function sendInput(city) {
   fetch("../data/city.list.json")
     .then((response) => response.json())
     .then((data) => {
-      //   data.forEach((element) => {
-      //     if (element.name == city) {
-      //       console.log(element);
-      //       getTemp(
-      //         element.coord.lat,
-      //         element.coord.lon,
-      //         element.country.toLowerCase()
-      //       );
-      //       renderDate(element);
-      //     }
-      //   });
       for (const iterator of data) {
         if (iterator.name == city) {
           console.log(iterator);
@@ -62,16 +69,18 @@ async function getTemp(lat, lon, lang) {
       `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&lang=${lang}&appid=${APIkey}`
     );
     const data = await res.json();
-    renderTemp(data);
-    console.log(data);
+    load.classList = "load";
     infoBlock.classList = "result-block_show";
+    objData = data;
+    renderTemp(data);
+    renderTempDays(data);
+    console.log(data);
   } catch (error) {
     console.error(error, "404 Error");
   }
 }
 
 function renderDate(data) {
-  //   console.log(data);
   city.textContent = `${data.name}, ${data.country}`;
 }
 
@@ -85,11 +94,9 @@ function getDate() {
   const now = new Date();
   locDate.textContent = now.toLocaleDateString();
   let maxDate = now.getTime() + 86400000;
-  //   console.log(new Date(now.getTime()));
-  //   console.log(new Date(maxDate));
+  console.log(now.getTime());
   maxDate = new Date(maxDate);
   maxDateFinal = maxDate.toString();
-  //   console.log(m    axDateFinal);
   return dayArr[now.getDate() - 1];
 }
 
@@ -98,3 +105,44 @@ function tuUpper(str) {
 }
 
 getDate();
+
+function renderTempDays(data) {
+  data.daily.forEach((element, indx) => {
+    if (indx < 5) {
+      let day = new Date().getTime();
+      day += 24 * 60 * 60 * 1000 * indx;
+      const dayInfo = dayShortArr[new Date(day).getDay()];
+      createDay(dayInfo, Math.round(element.temp.min), indx);
+      document
+        .querySelectorAll(".day-block")
+        .forEach((e) => e.addEventListener("click", setDatas));
+    }
+  });
+}
+
+const templateDay = `<li class="day-block">
+                        <span class="day__name"></span>
+                        <span class="day__temp"></span>
+                    </li>`;
+
+function createDay(day, temp, indx) {
+  elOfList.insertAdjacentHTML("afterbegin", templateDay);
+  const newCard = elOfList.firstElementChild;
+  newCard.querySelector(".day__name").parentNode.dataset.day = indx;
+  newCard.querySelector(".day__name").textContent = day;
+  newCard.querySelector(".day__temp").textContent = temp + "°C";
+  return newCard;
+}
+
+function setDatas(event) {
+  const listsOfdays = document.querySelectorAll(".day-block");
+  listsOfdays.forEach((e) => e.classList.remove("day-block_active"));
+  event.target.classList.add("day-block_active");
+  const numDay = event.target.getAttribute("data-day");
+  currTemp.textContent = Math.round(objData.daily[numDay].temp.min) + "°C";
+  currDesc.textContent = objData.daily[numDay].weather[0].description;
+  locDay.textContent = objData.daily[numDay].dt;
+  wind.textContent = Math.round(objData.daily[numDay].wind_speed) + " km/h";
+  humidity.textContent = objData.daily[numDay].humidity + " %";
+  pressure.textContent = objData.daily[numDay].pressure + " %";
+}

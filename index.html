@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/loading.css" />
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
     <title>Weather</title>
   </head>
@@ -13,10 +14,21 @@
       <div class="search">
         <h1 class="search__title">Weather App</h1>
         <form class="search__form" action="">
-          <input class="search__input" type="text" />
+          <input class="search__input" type="text" placeholder="search city" />
           <button class="search__btn" type="submit">SEARCH</button>
         </form>
       </div>
+
+      <div class="load">
+        <div>G</div>
+        <div>N</div>
+        <div>I</div>
+        <div>D</div>
+        <div>A</div>
+        <div>O</div>
+        <div>L</div>
+      </div>
+
       <div class="result-block">
         <div class="result-block__temp">
           <div class="location">
@@ -32,7 +44,7 @@
         <div class="result-block__days">
           <div class="data-block">
             <div class="res-block prec">
-              <span class="res-block__title prec__title">PRECIPITATION</span
+              <span class="res-block__title prec__title">PRESSURE</span
               ><span class="prec__result">0 %</span>
             </div>
             <div class="res-block hum">
@@ -45,7 +57,7 @@
             </div>
           </div>
           <ul class="week-list">
-            <li class="day-block day-block_active">
+            <!-- <li class="day-block day-block_active">
               <span class="day__name">Mon</span>
               <span class="day__temp">29°C</span>
             </li>
@@ -64,7 +76,7 @@
             <li class="day-block">
               <span class="day__name">Fry</span>
               <span class="day__temp">19°C</span>
-            </li>
+            </li> -->
           </ul>
           <div class="days-block"></div>
         </div>
