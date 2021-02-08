@@ -4,7 +4,7 @@
 
 You can also see an example by following the link below:
 
-#### https://kulchaka.github.io/weather/
+#### https://weather-app-open.web.app
 
 - this project uses: HTML,CSS,GIT and JavaScript
 
