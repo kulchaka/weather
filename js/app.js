@@ -53,7 +53,7 @@ function sendInput(city) {
       for (const iterator of data) {
         if (iterator.name == city) {
           console.log(iterator);
-          changeFaren(iterator.country);
+          changeUnits(iterator.country);
           getTemp(
             iterator.coord.lat,
             iterator.coord.lon,
@@ -83,7 +83,7 @@ async function getTemp(lat, lon, lang) {
   }
 }
 
-function changeFaren(country) {
+function changeUnits(country) {
   if (
     country === "BS" ||
     country === "BZ" ||
