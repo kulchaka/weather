@@ -1,5 +1,5 @@
 const submit = document.querySelector(".search__form");
-const input = document.querySelector(".search__input");
+const inputForm = document.querySelector(".search__input");
 const city = document.querySelector(".location__city");
 const infoBlock = document.querySelector(".result-block");
 const currTemp = document.querySelector(".temp__temperature");
@@ -38,8 +38,9 @@ const APIkey = "d9dd885fb445dbae5ec582c99cabc4f2";
 
 submit.addEventListener("submit", (event) => {
   event.preventDefault();
-  if (input.value.length > 2) {
-    const cityName = tuUpper(input.value);
+  const input = inputForm.value.trim();
+  if (input.length > 2) {
+    const cityName = tuUpper(input);
     submit.reset();
     sendInput(cityName);
     infoBlock.classList = "result-block";
@@ -115,6 +116,12 @@ function renderTemp(data) {
   currTemp.textContent = `${Math.round(data.current.temp)}${temperature}`;
   currDesc.textContent = data.current.weather[0].description;
   locDay.textContent = dayArr[getNumOfDay(data.current.dt)];
+  locDate.textContent = gettDate(data.current.dt);
+}
+
+function gettDate(num) {
+  const date = new Date(+(num + "000"));
+  return date.toLocaleDateString();
 }
 
 function tuUpper(str) {
@@ -165,6 +172,7 @@ function setDatas(event) {
     Math.round(objData.daily[numDay].temp.min) + temperature;
   currDesc.textContent = objData.daily[numDay].weather[0].description;
   locDay.textContent = dayArr[getNumOfDay(objData.daily[numDay].dt)];
+  locDate.textContent = gettDate(objData.daily[numDay].dt);
   wind.textContent = Math.round(objData.daily[numDay].wind_speed) + " km/h";
   humidity.textContent = objData.daily[numDay].humidity + " %";
   pressure.textContent = objData.daily[numDay].pressure + " %";
