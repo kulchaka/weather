@@ -11,6 +11,7 @@ const locDate = document.querySelector(".location__date");
 const locDay = document.querySelector(".location__day");
 const load = document.querySelector(".load");
 const elOfList = document.querySelector(".week-list");
+const temperature = "°C";
 
 elOfList.addEventListener("click", (e) => {});
 
@@ -85,7 +86,7 @@ function renderDate(data) {
 }
 
 function renderTemp(data) {
-  currTemp.textContent = `${Math.round(data.current.temp)}°C`;
+  currTemp.textContent = `${Math.round(data.current.temp)}${temperature}`;
   currDesc.textContent = data.current.weather[0].description;
   locDay.textContent = getDate();
 }
@@ -130,16 +131,24 @@ function createDay(day, temp, indx) {
   const newCard = elOfList.firstElementChild;
   newCard.querySelector(".day__name").parentNode.dataset.day = indx;
   newCard.querySelector(".day__name").textContent = day;
-  newCard.querySelector(".day__temp").textContent = temp + "°C";
+  newCard.querySelector(".day__temp").textContent = temp + temperature;
   return newCard;
 }
 
 function setDatas(event) {
+  let target = event.target;
+  if (
+    event.target.className == "day__name" ||
+    event.target.classList == "day__temp"
+  ) {
+    target = event.target.parentNode;
+  }
   const listsOfdays = document.querySelectorAll(".day-block");
   listsOfdays.forEach((e) => e.classList.remove("day-block_active"));
-  event.target.classList.add("day-block_active");
-  const numDay = event.target.getAttribute("data-day");
-  currTemp.textContent = Math.round(objData.daily[numDay].temp.min) + "°C";
+  target.classList.add("day-block_active");
+  const numDay = target.getAttribute("data-day");
+  currTemp.textContent =
+    Math.round(objData.daily[numDay].temp.min) + temperature;
   currDesc.textContent = objData.daily[numDay].weather[0].description;
   locDay.textContent = objData.daily[numDay].dt;
   wind.textContent = Math.round(objData.daily[numDay].wind_speed) + " km/h";
