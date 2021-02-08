@@ -68,6 +68,15 @@ p {
     cursor: pointer;
 }
 
+.cant-find {
+    display: none;
+    margin-top: 100px;
+}
+
+.cant-find_show {
+    display: block;
+}
+
 .result-block {
     margin-top: 20px;
     display: none;

@@ -10,25 +10,29 @@ const pressure = document.querySelector(".prec__result");
 const locDate = document.querySelector(".location__date");
 const locDay = document.querySelector(".location__day");
 const load = document.querySelector(".load");
+const cantFind = document.querySelector(".cant-find");
 const elOfList = document.querySelector(".week-list");
 let temperature = "°C";
 let units = "standard";
 
-elOfList.addEventListener("click", (e) => {});
+const templateDay = `<li class="day-block">
+                        <span class="day__name"></span>
+                        <span class="day__temp"></span>
+                    </li>`;
 
 let objData = {};
 
 const dayArr = [
+  "Sunday",
   "Monday",
   "Tuesday",
   "Wednesday",
   "Thursday",
   "Friday",
   "Saturday",
-  "Sunday",
 ];
 
-const dayShortArr = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const dayShortArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const APIkey = "d9dd885fb445dbae5ec582c99cabc4f2";
 
@@ -52,7 +56,7 @@ function sendInput(city) {
     .then((data) => {
       for (const iterator of data) {
         if (iterator.name == city) {
-          console.log(iterator);
+          //   console.log(iterator);
           changeUnits(iterator.country);
           getTemp(
             iterator.coord.lat,
@@ -63,6 +67,9 @@ function sendInput(city) {
           break;
         }
       }
+    })
+    .catch((err) => {
+      console.log("Error 404");
     });
 }
 
@@ -77,7 +84,7 @@ async function getTemp(lat, lon, lang) {
     objData = data;
     renderTemp(data);
     renderTempDays(data);
-    console.log(data);
+    // console.log(data);
   } catch (error) {
     console.error(error, "404 Error");
   }
@@ -107,24 +114,12 @@ function renderDate(data) {
 function renderTemp(data) {
   currTemp.textContent = `${Math.round(data.current.temp)}${temperature}`;
   currDesc.textContent = data.current.weather[0].description;
-  locDay.textContent = getDate();
-}
-
-function getDate() {
-  const now = new Date();
-  locDate.textContent = now.toLocaleDateString();
-  let maxDate = now.getTime() + 86400000;
-  console.log(now.getTime());
-  maxDate = new Date(maxDate);
-  maxDateFinal = maxDate.toString();
-  return dayArr[now.getDate() - 1];
+  locDay.textContent = dayArr[getNumOfDay(data.current.dt)];
 }
 
 function tuUpper(str) {
   return str[0].toUpperCase() + str.slice(1);
 }
-
-getDate();
 
 function renderTempDays(data) {
   data.daily.forEach((element, indx) => {
@@ -140,11 +135,6 @@ function renderTempDays(data) {
   });
 }
 
-const templateDay = `<li class="day-block">
-                        <span class="day__name"></span>
-                        <span class="day__temp"></span>
-                    </li>`;
-
 function createDay(day, temp, indx) {
   elOfList.insertAdjacentHTML("afterbegin", templateDay);
   const newCard = elOfList.firstElementChild;
@@ -152,6 +142,11 @@ function createDay(day, temp, indx) {
   newCard.querySelector(".day__name").textContent = day;
   newCard.querySelector(".day__temp").textContent = temp + temperature;
   return newCard;
+}
+
+function getNumOfDay(num) {
+  const date = new Date(+(num + "000"));
+  return date.getDay();
 }
 
 function setDatas(event) {
@@ -169,7 +164,7 @@ function setDatas(event) {
   currTemp.textContent =
     Math.round(objData.daily[numDay].temp.min) + temperature;
   currDesc.textContent = objData.daily[numDay].weather[0].description;
-  locDay.textContent = objData.daily[numDay].dt;
+  locDay.textContent = dayArr[getNumOfDay(objData.daily[numDay].dt)];
   wind.textContent = Math.round(objData.daily[numDay].wind_speed) + " km/h";
   humidity.textContent = objData.daily[numDay].humidity + " %";
   pressure.textContent = objData.daily[numDay].pressure + " %";
