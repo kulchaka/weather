@@ -11,7 +11,8 @@ const locDate = document.querySelector(".location__date");
 const locDay = document.querySelector(".location__day");
 const load = document.querySelector(".load");
 const elOfList = document.querySelector(".week-list");
-const temperature = "°C";
+let temperature = "°C";
+let units = "standard";
 
 elOfList.addEventListener("click", (e) => {});
 
@@ -52,6 +53,7 @@ function sendInput(city) {
       for (const iterator of data) {
         if (iterator.name == city) {
           console.log(iterator);
+          changeFaren(iterator.country);
           getTemp(
             iterator.coord.lat,
             iterator.coord.lon,
@@ -67,7 +69,7 @@ function sendInput(city) {
 async function getTemp(lat, lon, lang) {
   try {
     const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&lang=${lang}&appid=${APIkey}`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&lang=${lang}&appid=${APIkey}`
     );
     const data = await res.json();
     load.classList = "load";
@@ -78,6 +80,23 @@ async function getTemp(lat, lon, lang) {
     console.log(data);
   } catch (error) {
     console.error(error, "404 Error");
+  }
+}
+
+function changeFaren(country) {
+  if (
+    country === "BS" ||
+    country === "BZ" ||
+    country === "KY" ||
+    country === "PW" ||
+    country === "US" ||
+    country === "LR"
+  ) {
+    units = "imperial";
+    temperature = "°F";
+  } else {
+    units = "metric";
+    temperature = "°C";
   }
 }
 
