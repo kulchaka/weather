@@ -11,7 +11,7 @@
 .vscode
 node_modules/
 dist/
-.cache
+.cache/
 
 # Icon must end with two \r
 Icon
