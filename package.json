@@ -1,0 +1,33 @@
+{
+  "name": "weather_app",
+  "version": "1.0.0",
+  "description": "Enter the city and get",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kulchaka/weather.git"
+  },
+  "keywords": [
+    "Vanilla",
+    "JS",
+    "Module",
+    "JS",
+    "Git",
+    "HTML&CSS",
+    "Firebase",
+    "JSON",
+    "Fetch"
+  ],
+  "author": "Andrii Kulchytskyi <kulchaka@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kulchaka/weather/issues"
+  },
+  "homepage": "https://github.com/kulchaka/weather#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
