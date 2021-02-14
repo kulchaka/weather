@@ -2,6 +2,8 @@
 
 - Weather APP
 
+Enter the city and get the weather for 5 days.
+
 You can also see an example by following the link below:
 
 #### https://weather-app-open.web.app

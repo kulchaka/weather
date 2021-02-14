@@ -52,7 +52,7 @@ submit.addEventListener("submit", (event) => {
 });
 
 function sendInput(city) {
-  fetch("../data/city.list.json")
+  fetch("../data/city.list.min.json")
     .then((response) => response.json())
     .then((data) => {
       for (const iterator of data) {
