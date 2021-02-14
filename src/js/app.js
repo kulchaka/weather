@@ -1,3 +1,7 @@
+// import data from "../data/city.list.min.json";
+
+// console.log(data[0].name);
+
 const submit = document.querySelector(".search__form");
 const inputForm = document.querySelector(".search__input");
 const city = document.querySelector(".location__city");
@@ -52,7 +56,7 @@ submit.addEventListener("submit", (event) => {
 });
 
 function sendInput(city) {
-  fetch("../data/city.list.json")
+  fetch("./city.list.json")
     .then((response) => response.json())
     .then((data) => {
       for (const iterator of data) {
