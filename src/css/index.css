@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap');
+@import url(./normalize.css);
+@import url(./loading.css);
 
 :root {
     --gradient: linear-gradient(135deg, #72EDF2 10%, #5151E5 100%);
@@ -45,7 +47,7 @@ p {
 .search__input {
     border: none;
     border-radius: 25px;
-    background-image: url('../img/icons8-search.svg');
+    /* background-image: url('../img/icons8-search.svg'); */
     background-position: 10px 7px;
     background-repeat: no-repeat;
     background-size: 35px;

@@ -1,44 +1,45 @@
-// import data from "../data/city.list.min.json";
-
+// const data = require("../data/city.list.min.json");
+import "../css/index.css";
+console.log("hello");
 // console.log(data[0].name);
 
-const submit = document.querySelector(".search__form");
-const inputForm = document.querySelector(".search__input");
-const city = document.querySelector(".location__city");
-const infoBlock = document.querySelector(".result-block");
-const currTemp = document.querySelector(".temp__temperature");
-const currDesc = document.querySelector(".temp__desc");
-const wind = document.querySelector(".wind__result");
-const humidity = document.querySelector(".hum__result");
-const pressure = document.querySelector(".prec__result");
-const locDate = document.querySelector(".location__date");
-const locDay = document.querySelector(".location__day");
-const load = document.querySelector(".load");
-const cantFind = document.querySelector(".cant-find");
-const elOfList = document.querySelector(".week-list");
+// const submit = document.querySelector(".search__form");
+// const inputForm = document.querySelector(".search__input");
+// const city = document.querySelector(".location__city");
+// const infoBlock = document.querySelector(".result-block");
+// const currTemp = document.querySelector(".temp__temperature");
+// const currDesc = document.querySelector(".temp__desc");
+// const wind = document.querySelector(".wind__result");
+// const humidity = document.querySelector(".hum__result");
+// const pressure = document.querySelector(".prec__result");
+// const locDate = document.querySelector(".location__date");
+// const locDay = document.querySelector(".location__day");
+// const load = document.querySelector(".load");
+// const cantFind = document.querySelector(".cant-find");
+// const elOfList = document.querySelector(".week-list");
 let temperature = "°C";
 let units = "standard";
 
-const templateDay = `<li class="day-block">
-                        <span class="day__name"></span>
-                        <span class="day__temp"></span>
-                    </li>`;
+// const templateDay = `<li class="day-block">
+//                         <span class="day__name"></span>
+//                         <span class="day__temp"></span>
+//                     </li>`;
 
 let objData = {};
 
-const dayArr = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+// const dayArr = [
+//   "Sunday",
+//   "Monday",
+//   "Tuesday",
+//   "Wednesday",
+//   "Thursday",
+//   "Friday",
+//   "Saturday",
+// ];
 
-const dayShortArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+// const dayShortArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-const APIkey = "d9dd885fb445dbae5ec582c99cabc4f2";
+// const APIkey = "d9dd885fb445dbae5ec582c99cabc4f2";
 
 submit.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -51,7 +52,7 @@ submit.addEventListener("submit", (event) => {
     load.classList = "load load_show";
     elOfList.innerHTML = "";
   } else {
-    console.log("enter somthhing");
+    console.log("enter something");
   }
 });
 
