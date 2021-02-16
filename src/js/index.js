@@ -1,18 +1,12 @@
 //??-----------------------Imports---------------------------
-// const data = require("../data/city.list.min.json");
-import { toUperCase } from "./utils/toUperCase";
-import { sendInput } from "./utils/sendInput";
-import {
-  SUBMIT,
-  INFO_BLOCK,
-  LOADER,
-  WEEK_LIST,
-  INPUT_FORM,
-} from "./constants/constants";
+import { submitInput } from "./utils/submitInput";
+import { SUBMIT } from "./constants/constants";
 import "../css/index.css";
-console.log("hello");
-// console.log(data[0].name);
 
+//??-----------------------Function---------------------------
+SUBMIT.addEventListener("submit", submitInput);
+
+//!!-----------------------Old Code---------------------------
 // const submit = document.querySelector(".search__form");
 // const inputForm = document.querySelector(".search__input");
 // const city = document.querySelector(".location__city");
@@ -51,20 +45,20 @@ console.log("hello");
 
 // const APIkey = "d9dd885fb445dbae5ec582c99cabc4f2";
 
-SUBMIT.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const input = INPUT_FORM.value.trim();
-  if (input.length > 2) {
-    const cityName = toUperCase(input);
-    SUBMIT.reset();
-    sendInput(cityName);
-    INFO_BLOCK.classList = "result-block";
-    LOADER.classList = "load load_show";
-    WEEK_LIST.innerHTML = "";
-  } else {
-    console.log("enter something");
-  }
-});
+// SUBMIT.addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   const input = INPUT_FORM.value.trim();
+//   if (input.length > 2) {
+//     const cityName = toUperCase(input);
+//     SUBMIT.reset();
+//     sendInput(cityName);
+//     INFO_BLOCK.classList = "result-block";
+//     LOADER.classList = "load load_show";
+//     WEEK_LIST.innerHTML = "";
+//   } else {
+//     console.log("enter something");
+//   }
+// });
 
 // function sendInput(city) {
 //   fetch("./city.list.json")
