@@ -16,7 +16,7 @@ const WEEK_LIST = document.querySelector(".week-list");
 const TEMPLATE_DAY = `<li class="day-block">
                         <span class="day__name"></span>
                         <span class="day__temp"></span>
-                    </li>`;
+                      </li>`;
 
 const DAYS_LONG_ARRAY = [
   "Sunday",
@@ -33,3 +33,25 @@ const DAYS_SHORT_ARRAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const API_KEY = "d9dd885fb445dbae5ec582c99cabc4f2";
 
 const DATA_BASE_CITY = require("../../data/city.list.min.json");
+
+export {
+  DATA_BASE_CITY,
+  SUBMIT,
+  INPUT_FORM,
+  INFO_BLOCK,
+  LOADER,
+  WEEK_LIST,
+  DAYS_SHORT_ARRAY,
+  CITY_LOC,
+  CURRENT_TEMP,
+  CURRENT_DESC,
+  WIND,
+  HUMIDITY,
+  PRESSURE,
+  DATE_LOC,
+  DAY_LOC,
+  ERROR_FOUND,
+  TEMPLATE_DAY,
+  DAYS_LONG_ARRAY,
+  API_KEY,
+};

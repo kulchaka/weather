@@ -12,6 +12,7 @@
 node_modules/
 dist/
 .cache/
+.editorconfig
 
 # Icon must end with two \r
 Icon
