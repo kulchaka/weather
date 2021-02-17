@@ -14,7 +14,6 @@ import { getNumOfDay } from "../utils/getNumOfDay";
 function setDatas(event) {
   let target = event.target;
   let data = JSON.parse(localStorage.getItem("objData"));
-  console.log(data);
   if (
     event.target.className == "day__name" ||
     event.target.classList == "day__temp"
@@ -26,7 +25,6 @@ function setDatas(event) {
   listsOfdays.forEach((e) => e.classList.remove("day-block_active"));
   target.classList.add("day-block_active");
   const numDay = target.getAttribute("data-day");
-  console.log(numDay);
   CURRENT_TEMP.textContent =
     Math.round(data.daily[numDay].temp.min) +
     localStorage.getItem("temperature");

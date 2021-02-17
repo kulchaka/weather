@@ -15,7 +15,6 @@ async function getTemp(lat, lon, lang) {
     localStorage.setItem("objData", JSON.stringify(data));
     renderTemp(data);
     renderTempDays(data);
-    console.log(data);
   } catch (error) {
     console.error(error, "404 Error");
   }
