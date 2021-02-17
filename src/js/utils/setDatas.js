@@ -13,20 +13,23 @@ import { getNumOfDay } from "../utils/getNumOfDay";
 
 function setDatas(event) {
   let target = event.target;
-  let data = localStorage.getItem("objData");
+  let data = JSON.parse(localStorage.getItem("objData"));
+  console.log(data);
   if (
     event.target.className == "day__name" ||
     event.target.classList == "day__temp"
   ) {
     target = event.target.parentNode;
   }
+
   const listsOfdays = document.querySelectorAll(".day-block");
   listsOfdays.forEach((e) => e.classList.remove("day-block_active"));
   target.classList.add("day-block_active");
   const numDay = target.getAttribute("data-day");
+  console.log(numDay);
   CURRENT_TEMP.textContent =
     Math.round(data.daily[numDay].temp.min) +
-    localStorage.localStorage.getItem("temperature");
+    localStorage.getItem("temperature");
   CURRENT_DESC.textContent = data.daily[numDay].weather[0].description;
   DAY_LOC.textContent = DAYS_LONG_ARRAY[getNumOfDay(data.daily[numDay].dt)];
   DATE_LOC.textContent = gettDate(data.daily[numDay].dt);

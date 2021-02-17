@@ -12,11 +12,10 @@ async function getTemp(lat, lon, lang) {
     const data = await res.json();
     LOADER.classList = "load";
     INFO_BLOCK.classList = "result-block_show";
-    // objData = data;
-    localStorage.setItem("objData", data);
+    localStorage.setItem("objData", JSON.stringify(data));
     renderTemp(data);
     renderTempDays(data);
-    // console.log(data);
+    console.log(data);
   } catch (error) {
     console.error(error, "404 Error");
   }
